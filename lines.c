@@ -75,10 +75,10 @@ int main() {
 	line->start 	= create();
 	line->end 		= create();
 
-	line->start->x = 100;
-	line->start->y = 100;
+	line->start->x = 25;
+	line->start->y = 32;
 	line->end->x = 120;
-	line->end->y = 120;
+	line->end->y = 160;
 	line->slope = slope(line);
 
 	plot(line);
@@ -164,7 +164,9 @@ void set_mode(byte mode) {
  *		color to it.
  */
 void plot_pixel(int x, int y, byte color) {
-	VGA[y * SCREEN_WIDTH + x] = color;
+	//VGA[y * SCREEN_WIDTH + x] = color;
+	int offset = ((y << 8) + (y << 6)) + x;
+	VGA[offset] = color;
 }
 
 /**
